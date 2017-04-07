@@ -127,6 +127,10 @@
 			<p id="alkoholiayhteensa"></p>
                 <p id="alkoholinpalamisnopeus"></p>
                 <p id="alkoholinpalamisaika"></p>
+                <p id="maksimipromillet"></p>
+                <p id="alkoholiajuomisenloputtua"></p>
+                <p id="promilletjuomisenloputtua"></p>
+                <p id="alkoholipalanut"></p>
 
 				
 				
@@ -146,6 +150,11 @@
         var aloitusaika;
         var lopetusaika;
         var juomistunnit = 0;
+        var maksimialkoholipitoisuus = 0;
+        var alkoholiayhteensagrammoina = 0;
+        var promilletjuomisenloputtua = 0;
+        var alkoholiajuomisenloputtua = 0;
+        var alkoholipalanut = 0;
             $(document).on("pagecontainershow", function(){
                 $(".ui-content").height(getRealContentHeight());
             })
@@ -172,8 +181,8 @@
 }else if(document.getElementById('sukupuolinainen').checked) {
    alert("nainen");
 }
-            var paino = document.getElementById("paino").value;
-            alkoholinpalamisnopeus = paino / 10000;
+            paino = document.getElementById("paino").value;
+            alkoholinpalamisnopeus = paino / 10;
             aloitusaika = document.getElementById("aloitusaika").value;
             lopetusaika = document.getElementById("lopetusaika").value;
             aloitusaika = parseTime(aloitusaika);
@@ -188,10 +197,28 @@
             alkoholiayhteensa = alkoholiayhteensa + (0.33 * 0.047)* +document.getElementById("olut0.33_4.7").value;
             alkoholiayhteensa = alkoholiayhteensa + (0.12 * 0.12)* +document.getElementById("viini0.12_12").value;
             alkoholiayhteensa = alkoholiayhteensa + (0.04 * 0.40)* +document.getElementById("viina0.04_40").value;
-            $( "#alkoholiayhteensa" ).html( "Nautit yhteensä: " + alkoholiayhteensa + " grammaa alkoholia");
-            $( "#alkoholinpalamisnopeus" ).html( "Kehosi polttaa alkoholia: " + alkoholinpalamisnopeus + " grammaa tunnissa");
-            $( "#alkoholinpalamisaika" ).html( "Nauttimasi alkoholi palaa: " + (alkoholiayhteensa/alkoholinpalamisnopeus) + " tunnissa");
             
+            
+            alkoholiayhteensagrammoina = (alkoholiayhteensa * 0.79 * 1000);
+            
+            maksimipromillet = alkoholiayhteensagrammoina / (0.75 * paino);
+            
+            alkoholiajuomisenloputtua = alkoholiayhteensagrammoina - (alkoholinpalamisnopeus*juomistunnit);
+            
+            promilletjuomisenloputtua = alkoholiajuomisenloputtua / (0.75 * paino);
+            
+            alkoholipalanut = alkoholiajuomisenloputtua/alkoholinpalamisnopeus;
+            
+            
+            
+            
+            $( "#alkoholiayhteensa" ).html( "Nautit yhteensä: " + alkoholiayhteensagrammoina + " grammaa alkoholia");
+            $( "#alkoholinpalamisnopeus" ).html( "Kehosi polttaa alkoholia: " + alkoholinpalamisnopeus + " grammaa tunnissa");
+            $( "#alkoholinpalamisaika" ).html( "Nauttimasi alkoholi palaa: " + (alkoholiayhteensagrammoina/alkoholinpalamisnopeus) + " tunnissa");
+            $( "#maksimipromillet" ).html( "maksimipromillet: " + (maksimipromillet));
+            $( "#alkoholiajuomisenloputtua" ).html( "Alkoholimäärä juomisen loputtua " + alkoholiajuomisenloputtua + " grammaa");
+            $( "#promilletjuomisenloputtua" ).html( "Promillet juomisen loputtua " + promilletjuomisenloputtua + " ‰");
+            $( "#alkoholipalanut" ).html( "Alkoholi on poistunut kokonaan verestä " + alkoholipalanut + " tuntia juomisen lopettamishetkestä");
             
 
 });
