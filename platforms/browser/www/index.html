@@ -47,7 +47,7 @@
 </head>
 
 <body>
-<div data-role="page">
+<div data-role="page" id="tiedot">
  <div data-role="header">
  <h1>Otsikko</h1>
  </div> <!-- /header -->
@@ -57,30 +57,138 @@
      <h1>Tiedot</h1>
  <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
     <legend>Sukupuoli:</legend>
-        <input type="radio" name="radio-choice-b" id="radio-choice-c" value="mies" checked="checked">
-        <label for="radio-choice-c">Mies</label>
-        <input type="radio" name="radio-choice-b" id="radio-choice-d" value="nainen">
-        <label for="radio-choice-d">Nainen</label>
+        <input type="radio" name="radio-choice-b" id="sukupuolimies" value="mies" checked="checked">
+        <label for="sukupuolimies">Mies</label>
+        <input type="radio" name="radio-choice-b" id="sukupuolinainen" value="nainen">
+        <label for="sukupuolinainen">Nainen</label>
 </fieldset>
     <label for="slider-fill">Paino:</label>
-<input type="range" name="slider-fill" id="slider-fill" value="60" min="30" max="150" data-highlight="true">
+<input type="range" name="slider-fill" id="paino" value="60" min="30" max="150" data-highlight="true">
      
      <label for="text-1">Aloitit juomisen klo:</label>
-     <input type="text" name="text-1" id="text-1" value="18:00">
+     <input type="text" id="aloitusaika" name="text-1" id="text-1" value="18:00">
      <label for="text-3">Lopetit juomisen klo:</label>
-     <input type="text" name="text-3" id="text-3" value="22:00">
+     <input type="text" id="lopetusaika" name="text-3" id="text-3" value="22:00">
      
-     <a href="#" class="ui-btn ui-btn-inline ui-icon-arrow-r ui-btn-icon-right">Seuraava</a>
+     <a href="#juomat" class="ui-btn ui-btn-inline ui-icon-arrow-r ui-btn-icon-right" id="perustiedot">Seuraava</a>
  </div> <!-- /content -->
+    
+    
+    
+    
  <div data-role="footer">
  <h4>Mobiiliohjelmointi</h4>
  </div> <!-- /footer -->
 
 </div> <!-- /page -->
+     <!-- /page -->
+        <div data-role="page" id="juomat">
+            <div class="header" data-role="header"> <a href="#main" class="ui-btn ui-btn-inline ui-icon-home ui-btn-icon-notext ui-corner-all">No text</a>
+                <h1>Juomat</h1> </div>
+            <!-- /header -->
+            <div role="main" class="ui-content ui-body-a">  
+			
+
+				
+				<div data-role="fieldcontain">
+			                <label for="olut0.33_4.7">Olut (0.33L, 4.7%)</label>
+                <input type="number" name="olut" id="olut0.33_4.7" value="0">
+				</div>
+				<div data-role="fieldcontain">
+							                <label for="viini0.12_12">Viini (0.12L, 12%)</label>
+                <input type="number" name="olut" id="viini0.12_12" value="0">
+				</div>
+				<div data-role="fieldcontain">
+				<label for="viina0.04_40">Viina (0.04L, 40%)</label>
+                <input type="number" name="shotti" id="viina0.04_40" value="0">
+				</div>
+				<div data-role="fieldcontain">
+								<label for="text-basic">Oma juoma 1</label>
+                <input type="number" name="omajuoma1" id="text-basic" value="0">
+</div>
+                
+                <a href="#tiedot" class="ui-btn ui-btn-inline ui-icon-back ui-btn-icon-left">Edellinen</a>
+                <a href="#tulos" id="laske" class="ui-btn ui-btn-inline ui-icon-arrow-r ui-btn-icon-right">Laske</a>
+			</div>
+            <!-- /content -->
+            <div data-role="footer">
+                <h4>Mobiiliohjelmointi</h4> </div>
+            <!-- /footer -->
+        </div>
+        <!-- /page -->
+    
+    
+    
+            <div data-role="page" id="tulos">
+            <div class="header" data-role="header"> <a href="#tiedot" class="ui-btn ui-btn-inline ui-icon-home ui-btn-icon-notext ui-corner-all">No text</a>
+                <h1>Tulos</h1> </div>
+            <!-- /header -->
+            <div role="main" class="ui-content ui-body-a">  
+			<p id="alkoholiayhteensa"></p>
+                <p id="alkoholinpalamisnopeus"></p>
+
+				
+				
+			</div>
+            <!-- /content -->
+            <div data-role="footer">
+                <h4>Mobiiliohjelmointi</h4> </div>
+            <!-- /footer -->
+        </div>
  <script type="text/javascript" src="cordova.js"></script>
  <script type="text/javascript" src="js/index.js"></script>
- <script type="text/javascript">
- </script>
+ <script type="text/javascript"></script>
+    <script>
+    $(document).on("pagecreate", function() {
+        var alkoholinpalamisnopeus = 0;
+        var paino = 0;
+        var aloitusaika;
+        var lopetusaika;
+        
+            $(document).on("pagecontainershow", function(){
+                $(".ui-content").height(getRealContentHeight());
+            })
+
+            $(window).on("resize orientationchange", function(){
+                $(".ui-content").height(getRealContentHeight());
+            })
+            
+            function getRealContentHeight() {
+                var activePage = $.mobile.pageContainer.pagecontainer("getActivePage"),
+                screen = $.mobile.getScreenHeight(),
+                header = $(".ui-header").hasClass("ui-header-fixed") ? $(".ui-header").outerHeight() - 1 : $(".ui-header").outerHeight(),
+                footer = $(".ui-footer").hasClass("ui-footer-fixed") ? $(".ui-footer").outerHeight() - 1 : $(".ui-footer").outerHeight(),
+                contentMargins = $(".ui-content", activePage).outerHeight() - $(".ui-content", activePage).height();
+                var contentHeight = screen - header - footer - contentMargins;    
+                
+                return contentHeight;
+            }
+        });
+        
+        $( "#perustiedot" ).click(function() {
+            if(document.getElementById('sukupuolimies').checked) {
+  alert("mies");
+}else if(document.getElementById('sukupuolinainen').checked) {
+   alert("nainen");
+}
+            var paino = document.getElementById("paino").value;
+            alkoholinpalamisnopeus = paino / 10000;
+            aloitusaika = document.getElementById("aloitusaika").value;
+            lopetusaika = document.getElementById("lopetusaika").value;
+            alert(alkoholinpalamisnopeus + aloitusaika + paino);
+});
+        
+        
+        $( "#laske" ).click(function() {
+            var alkoholiayhteensa = 0;
+            alkoholiayhteensa = alkoholiayhteensa + (0.33 * 0.047)* +document.getElementById("olut0.33_4.7").value;
+            alkoholiayhteensa = alkoholiayhteensa + (0.12 * 0.12)* +document.getElementById("viini0.12_12").value;
+            alkoholiayhteensa = alkoholiayhteensa + (0.04 * 0.40)* +document.getElementById("viina0.04_40").value;
+            $( "#alkoholiayhteensa" ).html( "Nautit yhteensä: " + alkoholiayhteensa + " grammaa alkoholia");
+            $( "#alkoholinpalamisnopeus" ).html( "Kehosi polttaa alkoholia: " + alkoholinpalamisnopeus + " grammaa tunnissa");
+
+});
+    </script>
 </body>
 
 
