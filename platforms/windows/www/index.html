@@ -126,6 +126,7 @@
             <div role="main" class="ui-content ui-body-a">  
 			<p id="alkoholiayhteensa"></p>
                 <p id="alkoholinpalamisnopeus"></p>
+                <p id="alkoholinpalamisaika"></p>
 
 				
 				
@@ -144,7 +145,7 @@
         var paino = 0;
         var aloitusaika;
         var lopetusaika;
-        
+        var juomistunnit = 0;
             $(document).on("pagecontainershow", function(){
                 $(".ui-content").height(getRealContentHeight());
             })
@@ -175,7 +176,10 @@
             alkoholinpalamisnopeus = paino / 10000;
             aloitusaika = document.getElementById("aloitusaika").value;
             lopetusaika = document.getElementById("lopetusaika").value;
-            alert(alkoholinpalamisnopeus + aloitusaika + paino);
+            aloitusaika = parseTime(aloitusaika);
+            lopetusaika = parseTime(lopetusaika);
+            juomistunnit = Math.abs(aloitusaika - lopetusaika) / 36e5;
+            alert(aloitusaika + lopetusaika + juomistunnit);
 });
         
         
@@ -186,8 +190,35 @@
             alkoholiayhteensa = alkoholiayhteensa + (0.04 * 0.40)* +document.getElementById("viina0.04_40").value;
             $( "#alkoholiayhteensa" ).html( "Nautit yhteensä: " + alkoholiayhteensa + " grammaa alkoholia");
             $( "#alkoholinpalamisnopeus" ).html( "Kehosi polttaa alkoholia: " + alkoholinpalamisnopeus + " grammaa tunnissa");
+            $( "#alkoholinpalamisaika" ).html( "Nauttimasi alkoholi palaa: " + (alkoholiayhteensa/alkoholinpalamisnopeus) + " tunnissa");
+            
+            
 
 });
+        
+        
+        
+        
+        
+        function parseTime(timeString) {    
+    if (timeString == '') return null;
+
+    var time = timeString.match(/(\d+)(:(\d\d))?\s*(p?)/i); 
+    if (time == null) return null;
+
+    var hours = parseInt(time[1],10);    
+    if (hours == 12 && !time[4]) {
+          hours = 0;
+    }
+    else {
+        hours += (hours < 12 && time[4])? 12 : 0;
+    }   
+    var d = new Date();             
+    d.setHours(hours);
+    d.setMinutes(parseInt(time[3],10) || 0);
+    d.setSeconds(0, 0);  
+    return d;
+}
     </script>
 </body>
 
