@@ -47,14 +47,35 @@
 </head>
 
 <body>
-<div data-role="page" id="tiedot">
+<div data-role="page" id="home">
  <div data-role="header">
  <h1>Otsikko</h1>
  </div> <!-- /header -->
 
  <div role="main" class="ui-content ui-body-a">
      
-     <h1>Tiedot</h1>
+     Tervetuloa alkoholisovellukseeni!
+     <a href="#tiedot" class="ui-btn ui-icon-arrow-r ui-btn-icon-right">Uusi ryyppyreissu</a>
+     <a href="#laskuri" class="ui-btn ui-icon-arrow-r ui-btn-icon-right" id="perustiedot">Alkoholilaskuri</a>
+ </div> <!-- /content -->
+    
+    
+    
+    
+ <div data-role="footer">
+ <h4>Mobiiliohjelmointi</h4>
+ </div> <!-- /footer -->
+
+</div> <!-- /page -->
+     <!-- /page -->
+        <div data-role="page" id="laskuri">
+            <div class="header" data-role="header"> <a href="#home" class="ui-btn ui-btn-inline ui-icon-home ui-btn-icon-notext ui-corner-all">No text</a>
+                <h1>Juomat</h1> </div>
+            <!-- /header -->
+            <div role="main" class="ui-content ui-body-a"> 
+                
+                
+                     <h1>Tiedot</h1>
  <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
     <legend>Sukupuoli:</legend>
         <input type="radio" name="radio-choice-b" id="sukupuolimies" value="mies" checked="checked">
@@ -69,26 +90,8 @@
      <input type="text" id="aloitusaika" name="text-1" id="text-1" value="18:00">
      <label for="text-3">Lopetit juomisen klo:</label>
      <input type="text" id="lopetusaika" name="text-3" id="text-3" value="22:00">
-     
-     <a href="#juomat" class="ui-btn ui-btn-inline ui-icon-arrow-r ui-btn-icon-right" id="perustiedot">Seuraava</a>
- </div> <!-- /content -->
-    
-    
-    
-    
- <div data-role="footer">
- <h4>Mobiiliohjelmointi</h4>
- </div> <!-- /footer -->
-
-</div> <!-- /page -->
-     <!-- /page -->
-        <div data-role="page" id="juomat">
-            <div class="header" data-role="header"> <a href="#main" class="ui-btn ui-btn-inline ui-icon-home ui-btn-icon-notext ui-corner-all">No text</a>
-                <h1>Juomat</h1> </div>
-            <!-- /header -->
-            <div role="main" class="ui-content ui-body-a">  
 			
-
+<h1>Juomat</h1>
 				
 				<div data-role="fieldcontain">
 			                <label for="olut0.33_4.7">Olut (0.33L, 4.7%)</label>
@@ -120,7 +123,7 @@
     
     
             <div data-role="page" id="tulos">
-            <div class="header" data-role="header"> <a href="#tiedot" class="ui-btn ui-btn-inline ui-icon-home ui-btn-icon-notext ui-corner-all">No text</a>
+            <div class="header" data-role="header"> <a href="#home" class="ui-btn ui-btn-inline ui-icon-home ui-btn-icon-notext ui-corner-all">No text</a>
                 <h1>Tulos</h1> </div>
             <!-- /header -->
             <div role="main" class="ui-content ui-body-a">  
@@ -140,6 +143,68 @@
                 <h4>Mobiiliohjelmointi</h4> </div>
             <!-- /footer -->
         </div>
+        <!-- /page -->
+    
+    <div data-role="page" id="tiedot">
+            <div class="header" data-role="header"> <a href="#home" class="ui-btn ui-btn-inline ui-icon-home ui-btn-icon-notext ui-corner-all">No text</a>
+                <h1>Tulos</h1> </div>
+            <!-- /header -->
+            <div role="main" class="ui-content ui-body-a">  
+			<p>Tiedot</p>
+                
+                <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+    <legend>Sukupuoli:</legend>
+        <input type="radio" name="radio-choice-b" id="sukupuolimies" value="mies" checked="checked">
+        <label for="sukupuolimies">Mies</label>
+        <input type="radio" name="radio-choice-b" id="sukupuolinainen" value="nainen">
+        <label for="sukupuolinainen">Nainen</label>
+</fieldset>
+    <label for="slider-fill">Paino:</label>
+<input type="range" name="slider-fill" id="paino" value="60" min="30" max="150" data-highlight="true">
+            
+				<a href="#ryyppyreissu" class="ui-btn ui-icon-arrow-r ui-btn-icon-right">Aloita ryyppyreissu!</a>
+			</div>
+            <!-- /content -->
+            <div data-role="footer">
+                <h4>Mobiiliohjelmointi</h4> </div>
+            <!-- /footer -->
+        </div>
+        <!-- /page -->
+    
+    
+    
+    
+    
+    <div data-role="page" id="ryyppyreissu">
+            <div class="header" data-role="header"> <a href="#home" class="ui-btn ui-btn-inline ui-icon-home ui-btn-icon-notext ui-corner-all">No text</a>
+                <h1>Tulos</h1> </div>
+            <!-- /header -->
+            <div role="main" class="ui-content ui-body-a">  
+			<p>Valitse listasta juoma ja paina nappia kun olet juonut sen!</p>
+                
+				<div class="ui-field-contain">
+    <select name="select-native-1" id="select-native-1">
+        <option value="1">Olut (0.33 L, 4.7 %)</option>
+        <option value="2">Viini (0.12 L, 12 %)</option>
+        <option value="3">Viina snapsi (0.04 L, 40 %)</option>
+    </select>
+               <p>Tämänhetkinen veren alkoholipitoisuus</p>     
+                    
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+          <button class="ui-btn">JUO!</button>          
+                    
+</div>
+				
+			</div>
+            <!-- /content -->
+            <div data-role="footer">
+                <h4>Mobiiliohjelmointi</h4> </div>
+            <!-- /footer -->
+        </div>
+        <!-- /page -->
  <script type="text/javascript" src="cordova.js"></script>
  <script type="text/javascript" src="js/index.js"></script>
  <script type="text/javascript"></script>
@@ -154,7 +219,8 @@
         var alkoholiayhteensagrammoina = 0;
         var promilletjuomisenloputtua = 0;
         var alkoholiajuomisenloputtua = 0;
-        var alkoholipalanut = 0;
+        var alkoholipalanuttunneissa = 0;
+        var sukupuoli = "";
             $(document).on("pagecontainershow", function(){
                 $(".ui-content").height(getRealContentHeight());
             })
@@ -176,10 +242,16 @@
         });
         
         $( "#perustiedot" ).click(function() {
+            
+});
+        
+        
+        $( "#laske" ).click(function() {
+            
             if(document.getElementById('sukupuolimies').checked) {
-  alert("mies");
+                sukupuoli = "mies";
 }else if(document.getElementById('sukupuolinainen').checked) {
-   alert("nainen");
+    sukupuoli = "nainen";
 }
             paino = document.getElementById("paino").value;
             alkoholinpalamisnopeus = paino / 10;
@@ -188,11 +260,8 @@
             aloitusaika = parseTime(aloitusaika);
             lopetusaika = parseTime(lopetusaika);
             juomistunnit = Math.abs(aloitusaika - lopetusaika) / 36e5;
-            alert(aloitusaika + lopetusaika + juomistunnit);
-});
-        
-        
-        $( "#laske" ).click(function() {
+            
+            
             var alkoholiayhteensa = 0;
             alkoholiayhteensa = alkoholiayhteensa + (0.33 * 0.047)* +document.getElementById("olut0.33_4.7").value;
             alkoholiayhteensa = alkoholiayhteensa + (0.12 * 0.12)* +document.getElementById("viini0.12_12").value;
@@ -200,15 +269,23 @@
             
             
             alkoholiayhteensagrammoina = (alkoholiayhteensa * 0.79 * 1000);
-            
-            maksimipromillet = alkoholiayhteensagrammoina / (0.75 * paino);
-            
             alkoholiajuomisenloputtua = alkoholiayhteensagrammoina - (alkoholinpalamisnopeus*juomistunnit);
             
-            promilletjuomisenloputtua = alkoholiajuomisenloputtua / (0.75 * paino);
+            if (sukupuoli==="mies"){
+            maksimipromillet = alkoholiayhteensagrammoina / (0.75 * paino);
+                promilletjuomisenloputtua = alkoholiajuomisenloputtua / (0.75 * paino);
+            }
+            else{
+                maksimipromillet = alkoholiayhteensagrammoina / (0.66 * paino);
+                promilletjuomisenloputtua = alkoholiajuomisenloputtua / (0.66 * paino);
+            }
             
-            alkoholipalanut = alkoholiajuomisenloputtua/alkoholinpalamisnopeus;
             
+            
+            
+            alkoholipalanuttunneissa = alkoholiajuomisenloputtua/alkoholinpalamisnopeus;
+            
+            //lopetusaika.setHours(lopetusaika.getHours() + alkoholipalanut);
             
             
             
@@ -218,9 +295,32 @@
             $( "#maksimipromillet" ).html( "maksimipromillet: " + (maksimipromillet));
             $( "#alkoholiajuomisenloputtua" ).html( "Alkoholimäärä juomisen loputtua " + alkoholiajuomisenloputtua + " grammaa");
             $( "#promilletjuomisenloputtua" ).html( "Promillet juomisen loputtua " + promilletjuomisenloputtua + " ‰");
-            $( "#alkoholipalanut" ).html( "Alkoholi on poistunut kokonaan verestä " + alkoholipalanut + " tuntia juomisen lopettamishetkestä");
+            $( "#alkoholipalanut" ).html( "Alkoholi on poistunut kokonaan verestä " + alkoholipalanuttunneissa + " tuntia juomisen lopettamishetkestä");
             
 
+            
+            decimalTime = alkoholipalanuttunneissa * 60 * 60;
+var hours = Math.floor((decimalTime / (60 * 60)));
+decimalTime = decimalTime - (hours * 60 * 60);
+var minutes = Math.floor((decimalTime / 60));
+decimalTime = decimalTime - (minutes * 60);
+var seconds = Math.round(decimalTime);
+if(hours < 10)
+{
+	hours = "0" + hours;
+}
+if(minutes < 10)
+{
+	minutes = "0" + minutes;
+}
+if(seconds < 10)
+{
+	seconds = "0" + seconds;
+}
+alert("" + hours + ":" + minutes + ":" + seconds);
+            
+            
+            
 });
         
         
