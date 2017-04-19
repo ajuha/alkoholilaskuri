@@ -193,7 +193,8 @@
                 <p>Joit ensimmäisen juoman kello <span id="ekaklo"></span></p>
                     <p>Niissä on ollut yhteensä <span id="alkoholiagrammoina"></span> grammaa alkoholia</p>
                     
-                    <p>Tämänhetkinen veren alkoholipitoisuus: <span id="promilletnyt">0</span></p>
+                    <p>Kehossasi on tällä hetkellä <span id="alkoholianyt">0</span> grammaa alkoholia</p>
+                    <p>Veresi alkoholipitoisuus on <span id="promilletnyt">0</span> ‰</p>
                     
                     <br />
                     <br />
@@ -294,18 +295,19 @@
             alert(juomistunnit);
                         alkoholianyt = alkoholiayhteensagrammoina - (alkoholinpalamisnopeus * juomistunnit);
             
-            if (sukupuoli==="mies"){
-            promilletnyt = alkoholiayhteensagrammoina / (0.75 * paino);
+            if (sukupuoli=="mies"){
+            promilletnyt = alkoholianyt / (0.75 * paino);
             }
             else{
-                promilletnyt = alkoholiayhteensagrammoina / (0.75 * paino);
+                promilletnyt = alkoholianyt / (0.75 * paino);
             }
             
 
             $( "#juomiajuotu" ).html(juomiajuotu);
             $( "#alkoholiagrammoina" ).html(alkoholiayhteensagrammoina);
             $( "#ekaklo").html(aloitusaika);
-            $( "#promilletnyt").html(alkoholianyt);
+            $( "#promilletnyt").html(promilletnyt);
+            $( "#alkoholianyt").html(alkoholianyt);
             
     
             
