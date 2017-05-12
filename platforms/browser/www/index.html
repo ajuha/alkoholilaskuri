@@ -41,21 +41,27 @@ under the License.
         <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
         <script src="https://code.jquery.com/jquery-2.1.4.js" integrity="sha256-siFczlgw4jULnUICcdm9gjQPZkw/YPDqhQ9+nAOScE4="
                 crossorigin="anonymous"></script>
-        <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+        <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js">
+        </script>
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDaCFqm2913tVhhPRFcSVp-VHWt8msqxUQ"
+                type="text/javascript"></script>
+
+
+
 
         <title>Hello World</title>
     </head>
 
     <body>
         <div data-role="page" id="home">
-            <div data-role="header">
-                <h1>Otsikko</h1>
+            <div class="otsikko" data-role="header">
+                <h1>ALKOHOLISOVELLUS</h1>
             </div> <!-- /header -->
 
-            <div role="main" class="ui-content ui-body-a">
+            <div role="main" class="ui-content ui-body-a aloitussivu">
 
-                Tervetuloa alkoholisovellukseeni!
-                <a href="#tiedot" class="ui-btn ui-icon-arrow-r ui-btn-icon-right">Uusi ryyppyreissu</a>
+
+                <a href="#tiedot" class="ui-btn ui-icon-arrow-r ui-btn-icon-right">Uusi ryyppyreissu</a><br />
                 <a href="#laskuri" class="ui-btn ui-icon-arrow-r ui-btn-icon-right" id="perustiedot">Alkoholilaskuri</a>
             </div> <!-- /content -->
 
@@ -69,7 +75,7 @@ under the License.
         </div> <!-- /page -->
         <!-- /page -->
         <div data-role="page" id="laskuri">
-            <div class="header" data-role="header"> <a href="#home" class="ui-btn ui-btn-inline ui-icon-home ui-btn-icon-notext ui-corner-all">No text</a>
+            <div class="otsikko" data-role="header"> <a href="#home" class="ui-btn ui-btn-inline ui-icon-home ui-btn-icon-notext ui-corner-all">No text</a>
                 <h1>Juomat</h1> </div>
             <!-- /header -->
             <div role="main" class="ui-content ui-body-a"> 
@@ -120,7 +126,7 @@ under the License.
 
 
         <div data-role="page" id="tulos">
-            <div class="header" data-role="header"> <a href="#home" class="ui-btn ui-btn-inline ui-icon-home ui-btn-icon-notext ui-corner-all">No text</a>
+            <div class="otsikko" data-role="header"> <a href="#home" class="ui-btn ui-btn-inline ui-icon-home ui-btn-icon-notext ui-corner-all">No text</a>
                 <h1>Tulos</h1> </div>
             <!-- /header -->
             <div role="main" class="ui-content ui-body-a">  
@@ -143,7 +149,7 @@ under the License.
         <!-- /page -->
 
         <div data-role="page" id="tiedot">
-            <div class="header" data-role="header"> <a href="#home" class="ui-btn ui-btn-inline ui-icon-home ui-btn-icon-notext ui-corner-all">No text</a>
+            <div class="otsikko" data-role="header"> <a href="#home" class="ui-btn ui-btn-inline ui-icon-home ui-btn-icon-notext ui-corner-all">No text</a>
                 <h1>Tulos</h1> </div>
             <!-- /header -->
             <div role="main" class="ui-content ui-body-a">  
@@ -173,38 +179,67 @@ under the License.
 
 
         <div data-role="page" id="ryyppyreissu">
-            <div class="header" data-role="header"> <a href="#home" class="ui-btn ui-btn-inline ui-icon-home ui-btn-icon-notext ui-corner-all">No text</a>
+            <div class="otsikko" data-role="header"> <a href="#home" class="ui-btn ui-btn-inline ui-icon-home ui-btn-icon-notext ui-corner-all">No text</a>
                 <h1>Tulos</h1> </div>
             <!-- /header -->
             <div role="main" class="ui-content ui-body-a">  
 
-                <time id="timerValue"></time>
+                
 
                 <p>Valitse listasta juoma ja paina nappia kun olet juonut sen!</p>
 
                 <div class="ui-field-contain">
                     <select name="select-native-1" id="juoma">
-                        <option value="1">Olut (0.33 L, 4.7 %)</option>
-                        <option value="2">Viini (0.12 L, 12 %)</option>
-                        <option value="3">Viina snapsi (0.04 L, 40 %)</option>
-                        <option value="4">Olut (0.5 L, 4.7 %)</option>
-                        <option value="5">Olut (0.568 L, 4.7 %)</option>
+                        <option value="Olut 0.33">Olut (0.33 L, 4.7 %)</option>
+                        <option value="Viini 0.12">Viini (0.12 L, 12 %)</option>
+                        <option value="Viina 0.04">Viina snapsi (0.04 L, 40 %)</option>
+                        <option value="Olut 0.5">Olut (0.5 L, 4.7 %)</option>
+                        <option value="Olut 0.568">Olut (0.568 L, 4.7 %)</option>
                     </select>
-
-                    <p>Olet juonut <span class="alcoholdata" id="juomiajuotu">0</span> juomaa</p>
-                    <p>Joit ensimmäisen juoman kello <span class="alcoholdata"  id="ekaklo"></span></p>
-                    <p>Niissä on ollut yhteensä <span class="alcoholdata"  id="alkoholiagrammoina"></span> grammaa alkoholia</p>
-
-                    <p>Kehossasi on tällä hetkellä <span class="alcoholdata"  id="alkoholianyt">0</span> grammaa alkoholia</p>
-                    <h3>Veresi alkoholipitoisuus on <span class="alcoholdata"  id="promilletnyt">0</span> ‰</h3>
-
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <button id="juo" class="ui-btn">JUO!</button>          
-
                 </div>
+
+                <p>Olet juonut <span class="alcoholdata" id="juomiajuotu">0</span> juomaa</p>
+                <p>Joit ensimmäisen juoman kello <span class="alcoholdata"  id="ekaklo"></span></p>
+                <p>Aikaa kulunut: <time id="timerValue"></time></p>
+                <p>Niissä on ollut yhteensä <span class="alcoholdata"  id="alkoholiagrammoina"></span> grammaa alkoholia</p>
+
+                <p>Kehossasi on tällä hetkellä <span class="alcoholdata"  id="alkoholianyt">0</span> grammaa alkoholia</p>
+                <h3>Veresi alkoholipitoisuus on <span class="alcoholdata"  id="promilletnyt">0</span> ‰</h3>
+
+                <br />
+                <br />
+                <br />
+                <br />
+                <button id="juo" class="ui-btn">JUO!</button>          
+                <a href="#ryyppyreissutulokset" id="lopeta" class="ui-btn">Lopeta ryyppyreissu</a>
+
+
+            </div>
+            <!-- /content -->
+            <div data-role="footer">
+                <h4>Mobiiliohjelmointi</h4> </div>
+            <!-- /footer -->
+        </div>
+        <!-- /page -->
+
+        <div data-role="page" id="ryyppyreissutulokset">
+            <div class="otsikko" data-role="header"> <a href="#home" class="ui-btn ui-btn-inline ui-icon-home ui-btn-icon-notext ui-corner-all">No text</a>
+                <h1>Tulos</h1> </div>
+            <!-- /header -->
+            <div role="main" class="ui-content ui-body-a">  
+
+                <table>
+                    <tr>
+                        <th>ID</th>
+                        <th>Kellonaika</th>
+                        <th>Juoman nimi</th>
+                        <th>Promillet</th>
+                    </tr>
+                </table>
+                <br />
+                <div id="map_canvas"></div>
+
+
 
             </div>
             <!-- /content -->
@@ -238,6 +273,72 @@ under the License.
             var latitude = 0;
             var longitude = 0;
             var ryyppyreissutiedot = [];
+            var aloitusaikalyhyt;
+            var tamanhetkinenaikalyhyt;
+            var juoma = "Olut 0.33";
+
+            //copypasta
+            function initMap() {
+                var infowindow = new google.maps.InfoWindow();
+                var nLat;
+                var nLon;
+                var myLatLng;
+                var map;
+                var nPositions = [];
+                
+
+
+                var map = new google.maps.Map(document.getElementById('map_canvas'), {
+                    zoom: 15,
+                    center: {lat: 60.173894, lng: 24.944455},
+                    
+                });
+
+                var flightPlanCoordinates = [
+                    {lat: 60.173894, lng: 24.944455, text: "Olut 0.33 L"},
+                    {lat: 60.173398, lng: 24.944982, text: "Olut 0.5 L"},
+                    {lat: 60.170068, lng: 24.945776, text: "Olut 0.33 L"},
+                    {lat: 60.169929, lng: 24.946012, text: "Viina 0.04 L"}
+                ];
+                var flightPath = new google.maps.Polyline({
+                    path: flightPlanCoordinates,
+                    geodesic: true,
+                    strokeColor: '#FF0000',
+                    strokeOpacity: 1.0,
+                    strokeWeight: 2
+                });
+
+                flightPath.setMap(map);
+
+                for (i = 0; i < flightPlanCoordinates.length; i++) {  
+                var startMarker = new google.maps.Marker({
+                    position: flightPath.getPath().getAt(i), 
+                    map: map
+                });
+                    
+                    google.maps.event.addListener(startMarker, 'click', (function(startMarker, i) {
+    return function() {
+      infowindow.setContent(flightPlanCoordinates[i].text);
+      infowindow.open(map, startMarker);
+    }
+  })(startMarker, i));
+                    
+                }
+                
+
+
+
+
+
+                google.maps.event.addListener(map, 'bounds_changed', function() {
+                    var center = map.getCenter();
+                    google.maps.event.trigger(map, "resize");
+                    map.setCenter(center);
+                });
+
+            }
+
+            //copypasta
 
             setInterval(function() {
                 paivitaTiedot();
@@ -284,6 +385,20 @@ under the License.
                 navigator.geolocation.getCurrentPosition(onSuccess, onError);
             }
 
+            $( "#lopeta" ).click(function(){
+                for (var i = 0; i < ryyppyreissutiedot.length; i++) {
+                    tr = $('<tr/>');
+                    tr.append("<td>" + ryyppyreissutiedot[i].juoma + "</td>");
+                    tr.append("<td>" + ryyppyreissutiedot[i].kellonaika + "</td>");
+                    tr.append("<td>" + ryyppyreissutiedot[i].juomannimi + "</td>");
+                    tr.append("<td>" + ryyppyreissutiedot[i].promillet + "</td>");
+                    $('table').append(tr);
+                    initMap();
+                } 
+
+                ryyppyreissutiedot.push({juoma: juomiajuotu, kellonaika: tamanhetkinenaika, juomannimi: juoma, promillet: promilletnytround, alkoholiayhteensa: alkoholiayhteensagrammoinaround, sijainti: {lat: latitude, lon: longitude}});
+            });
+
             $( "#ryyppyreissu" ).click(function() {
 
                 if(document.getElementById('sukupuolimies2').checked) {
@@ -298,35 +413,36 @@ under the License.
 
 
             $( "#juo" ).click(function() {
-                timer();
+                
                 etsiSijainti();
                 console.log(latitude + " " + longitude);
                 juomiajuotu = juomiajuotu + 1;
-                var juoma = document.getElementById('juoma').value;
-                if (juoma==1){
+                juoma = document.getElementById('juoma').value;
+                if (juoma=="Olut 0.33"){
                     alkoholiayhteensagrammoina = alkoholiayhteensagrammoina + (0.33 * 0.047) * 0.79 * 1000;
-                } else if (juoma==2){
+                } else if (juoma=="Viini 0.12"){
                     alkoholiayhteensagrammoina = alkoholiayhteensagrammoina + (0.12 * 0.12) * 0.79 * 1000;
-                } else if (juoma==3){
+                } else if (juoma=="Viina 0.04"){
                     alkoholiayhteensagrammoina = alkoholiayhteensagrammoina + (0.04 * 0.40) * 0.79 * 1000;
-                } else if (juoma==4){
+                } else if (juoma=="Olut 0.5"){
                     alkoholiayhteensagrammoina = alkoholiayhteensagrammoina + (0.5 * 0.047) * 0.79 * 1000;
-                } else if (juoma==5){
+                } else if (juoma=="Olut 0.568"){
                     alkoholiayhteensagrammoina = alkoholiayhteensagrammoina + (0.568 * 0.047) * 0.79 * 1000;
                 }
                 console.log(aloitusaika)
                 if (typeof aloitusaika == 'undefined'){
                     aloitusaika = new Date();
-
+                    
                     aloitusaika = aloitusaika.getHours() + ":" + aloitusaika.getMinutes();
+                    aloitusaikalyhyt = aloitusaika;
                     aloitusaika = parseTime(aloitusaika);
-
+                    timer();
                 };
 
                 currentdate = new Date();
                 tamanhetkinenaika = currentdate.getHours() + ":" + currentdate.getMinutes();
                 console.log("moi" + tamanhetkinenaika);
-
+                tamanhetkinenaikalyhyt = tamanhetkinenaika;
                 tamanhetkinenaika = parseTime(tamanhetkinenaika);
 
                 console.log("moi2" + tamanhetkinenaika);
@@ -349,11 +465,11 @@ under the License.
 
                 $( "#juomiajuotu" ).html(juomiajuotu);
                 $( "#alkoholiagrammoina" ).html(alkoholiayhteensagrammoinaround);
-                $( "#ekaklo").html(aloitusaika);
+                $( "#ekaklo").html(aloitusaikalyhyt);
                 $( "#promilletnyt").html(promilletnytround);
                 $( "#alkoholianyt").html(alkoholianytround);
-                
-                ryyppyreissutiedot.push({kellonaika: tamanhetkinenaika, promillet: promilletnytround, sijainti: {lat: latitude, lon: longitude}});
+
+                ryyppyreissutiedot.push({juoma: juomiajuotu, kellonaika: tamanhetkinenaikalyhyt, juomannimi: juoma, promillet: promilletnytround, alkoholiayhteensa: alkoholiayhteensagrammoinaround, sijainti: {lat: latitude, lon: longitude}});
                 console.log(ryyppyreissutiedot);
             });
             function paivitaTiedot(){
@@ -386,7 +502,7 @@ under the License.
                 $( "#promilletnyt").html(promilletnytround);
                 $( "#alkoholianyt").html(alkoholianytround);
 
-                
+
 
             }
 
