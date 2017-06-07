@@ -38,10 +38,9 @@ under the License.
         <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
 
         <link rel="stylesheet" type="text/css" href="css/index.css" />
-        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
-        <script src="https://code.jquery.com/jquery-2.1.4.js" integrity="sha256-siFczlgw4jULnUICcdm9gjQPZkw/YPDqhQ9+nAOScE4="
-                crossorigin="anonymous"></script>
-        <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js">
+        <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css" />
+        <script src="js/jquery-2.1.4.js" integrity="sha256-siFczlgw4jULnUICcdm9gjQPZkw/YPDqhQ9+nAOScE4=" crossorigin="anonymous"></script>
+        <script src="js/jquery.mobile-1.4.5.min.js">
         </script>
         <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDaCFqm2913tVhhPRFcSVp-VHWt8msqxUQ"
                 type="text/javascript"></script>
@@ -301,7 +300,7 @@ under the License.
                     {lat: 60.169929, lng: 24.946012, text: "Viina 0.04 L"}
                 ];
                 var flightPath = new google.maps.Polyline({
-                    path: flightPlanCoordinates,
+                    path: ryyppyreissutiedot,
                     geodesic: true,
                     strokeColor: '#FF0000',
                     strokeOpacity: 1.0,
@@ -310,7 +309,7 @@ under the License.
 
                 flightPath.setMap(map);
 
-                for (i = 0; i < flightPlanCoordinates.length; i++) {  
+                for (i = 0; i < ryyppyreissutiedot.length; i++) {  
                 var startMarker = new google.maps.Marker({
                     position: flightPath.getPath().getAt(i), 
                     map: map
@@ -318,7 +317,7 @@ under the License.
                     
                     google.maps.event.addListener(startMarker, 'click', (function(startMarker, i) {
     return function() {
-      infowindow.setContent(flightPlanCoordinates[i].text);
+      infowindow.setContent(ryyppyreissutiedot[i].juomannimi);
       infowindow.open(map, startMarker);
     }
   })(startMarker, i));
@@ -396,7 +395,6 @@ under the License.
                     initMap();
                 } 
 
-                ryyppyreissutiedot.push({juoma: juomiajuotu, kellonaika: tamanhetkinenaika, juomannimi: juoma, promillet: promilletnytround, alkoholiayhteensa: alkoholiayhteensagrammoinaround, sijainti: {lat: latitude, lon: longitude}});
             });
 
             $( "#ryyppyreissu" ).click(function() {
@@ -469,14 +467,14 @@ under the License.
                 $( "#promilletnyt").html(promilletnytround);
                 $( "#alkoholianyt").html(alkoholianytround);
 
-                ryyppyreissutiedot.push({juoma: juomiajuotu, kellonaika: tamanhetkinenaikalyhyt, juomannimi: juoma, promillet: promilletnytround, alkoholiayhteensa: alkoholiayhteensagrammoinaround, sijainti: {lat: latitude, lon: longitude}});
+                ryyppyreissutiedot.push({juoma: juomiajuotu, kellonaika: tamanhetkinenaikalyhyt, juomannimi: juoma, promillet: promilletnytround, alkoholiayhteensa: alkoholiayhteensagrammoinaround, lat: latitude, lng: longitude});
                 console.log(ryyppyreissutiedot);
             });
             function paivitaTiedot(){
                 currentdate = new Date();
                 tamanhetkinenaika = currentdate.getHours() + ":" + currentdate.getMinutes();
                 console.log("moi" + tamanhetkinenaika);
-
+                tamanhetkinenaikalyhyt = tamanhetkinenaika;
                 tamanhetkinenaika = parseTime(tamanhetkinenaika);
 
                 console.log("moi2" + tamanhetkinenaika);
@@ -498,7 +496,7 @@ under the License.
                 alkoholianytround = +alkoholianyt.toFixed(2);
                 $( "#juomiajuotu" ).html(juomiajuotu);
                 $( "#alkoholiagrammoina" ).html(alkoholiayhteensagrammoinaround);
-                $( "#ekaklo").html(aloitusaika);
+                $( "#ekaklo").html(aloitusaikalyhyt);
                 $( "#promilletnyt").html(promilletnytround);
                 $( "#alkoholianyt").html(alkoholianytround);
 
